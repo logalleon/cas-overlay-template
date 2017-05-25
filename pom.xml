@@ -66,7 +66,22 @@
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
+
+        <dependency>
+             <groupId>org.apereo.cas</groupId>
+             <artifactId>cas-server-support-ldap</artifactId>
+             <version>${cas.version}</version>
+        </dependency>
+<!--
+        <dependency>
+             <groupId>org.apereo.cas</groupId>
+             <artifactId>cas-server-support-gauth</artifactId>
+             <version>${cas.version}</version>
+        </dependency>
+-->
     </dependencies>
+
+
 
     <properties>
         <cas.version>5.0.5</cas.version>
