@@ -42,7 +42,7 @@
 
         <section class="row">
             <label for="password" th:utext="#{screen.welcome.label.password}"/>
-            
+
             <div>
                 <input class="required"
                        type="password"
@@ -60,13 +60,31 @@
                 </span>
             </div>
         </section>
+        <section class="row">
+            <label for="token">Token:</label>
+
+            <div>
+                <input class="required"
+                       type="password"
+                       id="text"
+                       size="6"
+                       tabindex="3"
+                       autocomplete="off"/>
+                <span id="capslock-on" style="display:none;">
+                    <p>
+                        <i class="fa fa-exclamation-circle"></i>
+                        <span th:utext="#{screen.capslock.on}"/>
+                    </p>
+                </span>
+            </div>
+        </section>
         <section class="row check">
             <p th:if="${rememberMeAuthenticationEnabled}">
                 <input type="checkbox" name="rememberMe" id="rememberMe" value="true" tabindex="5"  />
                 <label for="rememberMe" th:text="#{screen.rememberme.checkbox.title}"/>
             </p>
         </section>
-        
+
         <section class="row" th:if="${recaptchaSiteKey}">
             <div class="g-recaptcha" th:attr="data-sitekey=${recaptchaSiteKey}"/>
         </section>
@@ -92,13 +110,13 @@
         <a th:utext="#{screen.pm.button.resetPassword}" href="javascript:void(0)" onclick="$('#passwordManagementForm').submit();" />
         <p/>
     </form>
-   
+
     <div th:unless="${passwordManagementEnabled}">
         <span class="fa fa-question-circle"></span>
         <span th:utext="#{screen.pm.button.forgotpwd}" />
         <p/>
     </div>
-    
+
     <script type="text/javascript" th:inline="javascript">
         var i = [[#{screen.welcome.button.loginwip}]]
         $("#fm1").submit(function() {
