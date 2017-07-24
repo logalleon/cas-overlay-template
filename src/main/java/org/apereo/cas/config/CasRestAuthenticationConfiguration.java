@@ -29,6 +29,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
+//ECLKC
+import org.apereo.cas.authentication.principal.resolvers.EchoingPrincipalResolver;
 
 import java.net.URI;
 
@@ -81,7 +83,8 @@ public class CasRestAuthenticationConfiguration implements AuthenticationEventEx
     @Override
     public void configureAuthenticationExecutionPlan(final AuthenticationEventExecutionPlan plan) {
         if (StringUtils.isNotBlank(casProperties.getAuthn().getRest().getUri())) {
-            plan.registerAuthenticationHandlerWithPrincipalResolver(restAuthenticationHandler(), personDirectoryPrincipalResolver);
+//ECLKC            plan.registerAuthenticationHandlerWithPrincipalResolver(restAuthenticationHandler(), personDirectoryPrincipalResolver);
+            plan.registerAuthenticationHandlerWithPrincipalResolver(restAuthenticationHandler(), new EchoingPrincipalResolver());
         }
     }
 
