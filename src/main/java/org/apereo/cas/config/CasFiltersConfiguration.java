@@ -78,8 +78,10 @@ public class CasFiltersConfiguration {
         initParams.put("enableCacheControl", BooleanUtils.toStringTrueFalse(header.isCache()));
         initParams.put("enableXContentTypeOptions", BooleanUtils.toStringTrueFalse(header.isXcontent()));
         initParams.put("enableStrictTransportSecurity", BooleanUtils.toStringTrueFalse(header.isHsts()));
-        initParams.put("enableXFrameOptions", BooleanUtils.toStringTrueFalse(header.isXframe()));
-        initParams.put("enableXSSProtection", BooleanUtils.toStringTrueFalse(header.isXss()));
+//        initParams.put("enableXFrameOptions", BooleanUtils.toStringTrueFalse(header.isXframe()));
+//        initParams.put("enableXSSProtection", BooleanUtils.toStringTrueFalse(header.isXss()));
+        initParams.put("enableXFrameOptions", "false"); //ECLKC for iFrame
+        initParams.put("enableXSSProtection", "false"); //ECLKC for iFrame
         final FilterRegistrationBean bean = new FilterRegistrationBean();
         bean.setFilter(new ResponseHeadersEnforcementFilter());
         bean.setUrlPatterns(Collections.singleton("/*"));
