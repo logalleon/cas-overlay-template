@@ -59,6 +59,24 @@
     </build>
 
     <dependencies>
+        <!--next three to compile v2 attriutes release and Rest Authentiation -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-validation</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-core-api-web</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+        <!-- end -->
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-webapp${app.server}</artifactId>
