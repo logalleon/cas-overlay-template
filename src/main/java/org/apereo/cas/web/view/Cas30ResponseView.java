@@ -31,7 +31,7 @@ import java.util.Set;
  */
 public class Cas30ResponseView extends Cas20ResponseView {
     private static final Logger LOGGER = LoggerFactory.getLogger(Cas30ResponseView.class);
-    
+
     private final boolean releaseProtocolAttributes;
 
     public Cas30ResponseView(final boolean successResponse,
@@ -40,7 +40,8 @@ public class Cas30ResponseView extends Cas20ResponseView {
                              final String authenticationContextAttribute,
                              final View view,
                              final boolean releaseProtocolAttributes) {
-        super(successResponse, protocolAttributeEncoder, servicesManager, authenticationContextAttribute, view);
+        super(successResponse, protocolAttributeEncoder, servicesManager, authenticationContextAttribute, view,
+        false);//ECLKC add false so attributes are not set by super class again
         this.releaseProtocolAttributes = releaseProtocolAttributes;
     }
 
@@ -94,7 +95,7 @@ public class Cas30ResponseView extends Cas20ResponseView {
         final String contextProvider = getSatisfiedMultifactorAuthenticationProviderId(model);
         if (StringUtils.isNotBlank(contextProvider) && StringUtils.isNotBlank(authenticationContextAttribute)) {
             filteredAuthenticationAttributes.put(this.authenticationContextAttribute, Collections.singleton(contextProvider));
-        }        
+        }
         return filteredAuthenticationAttributes;
     }
 

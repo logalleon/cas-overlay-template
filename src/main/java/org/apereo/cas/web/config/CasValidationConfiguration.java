@@ -120,7 +120,8 @@ public class CasValidationConfiguration {
     public View cas2ServiceSuccessView() {
         return new Cas20ResponseView(true, protocolAttributeEncoder,
                 servicesManager, casProperties.getAuthn().getMfa().getAuthenticationContextAttribute(),
-                this.cas2SuccessView);
+                this.cas2SuccessView,
+                casProperties.getAuthn().isReleaseProtocolAttributes()); //ECLKC Also release attributes
     }
 
     @Bean
