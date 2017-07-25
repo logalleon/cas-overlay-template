@@ -19,6 +19,7 @@ body {
     font-size: 14px;
     font-family: Verdana, sans-serif;
     /*ECLKC background-color: #153e50;*/
+    display: none;
 }
 
 input {
