@@ -65,17 +65,12 @@
 
             <div>
                 <input class="required"
-                       type="password"
-                       id="text"
+                       id="token"
                        size="6"
                        tabindex="3"
                        autocomplete="off"/>
-                <span id="capslock-on" style="display:none;">
-                    <p>
-                        <i class="fa fa-exclamation-circle"></i>
-                        <span th:utext="#{screen.capslock.on}"/>
-                    </p>
-                </span>
+                <br>
+                <p><a id="email2falink" href="#">Email token</a></p>
             </div>
         </section>
         <section class="row check">
