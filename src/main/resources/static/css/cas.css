@@ -18,7 +18,9 @@ Modals
 body {
     font-size: 14px;
     font-family: Verdana, sans-serif;
-    background-color: #153e50;
+    /*ECLKC background-color: #153e50;*/
+    display: none;
+    overflow: hidden;
 }
 
 input {
@@ -76,6 +78,7 @@ p {
 header {
     overflow: hidden;
     padding: 20px 0;
+    display: none; /*ECLKC Hide header */
 }
 
 header h1 {

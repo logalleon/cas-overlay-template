@@ -77,6 +77,18 @@
             <version>${cas.version}</version>
         </dependency>
         <!-- end -->
+        <!--next  to show cas in iframe -->
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-webapp-config</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-security-filter</artifactId>
+            <version>2.0.7-SNAPSHOT</version>
+        </dependency>
+        <!-- end -->
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-webapp${app.server}</artifactId>
