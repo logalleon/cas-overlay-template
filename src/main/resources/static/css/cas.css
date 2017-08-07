@@ -2441,3 +2441,26 @@ meter[value="4"]::-moz-meter-bar {
 .pm {
     padding: 5px;
 }
+
+
+/* ECLKC */
+a#email2falink {
+    margin: 5px;
+}
+
+
+.lazy-registration {
+    display: none;
+}
+
+.lazy-reg-form .form-control {
+    margin-bottom: 15px;
+}
+
+.lazy-reg-form .form-group {
+    padding: 0 30px;
+}
+
+.lazy-registration-container .btn-warning {
+    margin-bottom: 15px;
+}
