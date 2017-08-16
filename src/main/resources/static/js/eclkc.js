@@ -32,27 +32,37 @@ $(function() {
   }).hide();
   var credentialsWarning = 'Username or password is invalid.';
 
-  //load lazy registration
-  $('body').append('<div class="lazy-registration-container" id="lazy-registration-container"></div>');
-  $('#lazy-registration-container').load('/users/api/static/html/lazyregistration.html', function (){
+  //check if login or logout
+  var loginSuccess = $('#content .alert-success h2').text();
 
-    $('#register').on('click', function(e) {
-      e.preventDefault();
-      $('#lazyRegistration').show();
-      $(window).scrollTop($('#lazyRegistration button[type="submit"]').offset().top);
+  if (loginSuccess === 'Log In Successful'){
+    //after login
+    $('#content .alert p').last().before($('<p>You can edit your user profile <a href="/users/api/profile">here</a></p><br>'));
+  } else if (loginSuccess === 'Logout successful'){
+    //logout page
+  } else {
+   //login page
+   //load lazy registration
+    $('body').append('<div class="lazy-registration-container" id="lazy-registration-container"></div>');
+    $('#lazy-registration-container').load('/users/api/static/html/lazyregistration.html', function (){
+
+      $('#register').on('click', function(e) {
+        e.preventDefault();
+        $('#lazyRegistration').show();
+        $(window).scrollTop($('#lazyRegistration button[type="submit"]').offset().top);
+      });
+
+      $('#lazyRegForm').on('submit', function(e) {
+        validateLazyRegForm(e);
+      });
+
+      $('#lazyRegUsername').on('blur', function (e){
+        checkUsernameAvailability();
+      });
+
+      resizeFrame(true);
     });
-
-    $('#lazyRegForm').on('submit', function(e) {
-      validateLazyRegForm(e);
-    });
-
-    $('#lazyRegUsername').on('blur', function (e){
-      checkUsernameAvailability();
-    });
-
-    resizeFrame(true);
-
-  });
+  }
 
   $submit.on('click', function(e, tokenValidated) {
     if (!tokenValidated) {

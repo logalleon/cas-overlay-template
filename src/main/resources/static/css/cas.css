@@ -2464,3 +2464,40 @@ a#email2falink {
 .lazy-registration-container .btn-warning {
     margin-bottom: 15px;
 }
+
+.btn-warning {
+  background-color: #007b8d;
+  border-color: #006574;
+  font-weight: 400;
+  font-family: Lato,sans-serif;
+  font-size: 100%;
+  line-height: 1.5;
+}
+
+.btn-warning:hover,
+.btn-warning:focus:active,
+.btn-warning:focus:visited,
+.btn-warning:visited,
+.btn-warning:active {
+    color: #fff;
+    background-color: #006574;
+    border-color: #004f5b;
+}
+
+.btn-submit {
+  background-color: #007b8d;
+  border-color: #006574;
+  font-weight: 400;
+  font-family: Lato,sans-serif;
+  font-size: 100%;
+  line-height: 1.5;
+}
+
+.btn-submit:hover,
+.btn-submit:visited,
+.btn-submit:focus:active,
+.btn-submit:active {
+    color: #fff;
+    background-color: #006574;
+    border-color: #004f5b;
+}
