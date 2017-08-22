@@ -15,21 +15,13 @@ $(function() {
     '<div id="message" class="alert alert-success"><p></p></div>'
   );
   $submit.closest('.row').prepend(
-    '<div id="errormessage" class="alert alert-error"><p></p></div>'
+    '<div id="errormessage" class="alert alert-danger"><p></p></div>'
   );
   var $errormessage = $('#errormessage');
-  $errormessage.css({
-    'background-color': '#f2dede',
-    'color': '#a94442',
-    'margin': '.5rem 0'
-  }).hide();
   var $message = $('#message');
-  $message.css({
-    'background-color': '#dff0d8',
-    'border-color': '#d6e9c6',
-    'color': '#3c763d',
-    'margin': '.5rem 0'
-  }).hide();
+  $errormessage.hide();
+  $message.hide();
+
   var credentialsWarning = 'Username or password is invalid.';
 
   //check if login or logout
@@ -149,6 +141,19 @@ $(function() {
 function enroll2fa() {  //eslint-disable-line
   $('body').append('<form id="enroll2fa" method="post" action="' +
     G_SERVER + '/users/api/tfa/enable"><input type="hidden" id="enrollform-uid" name="uid"><input type="hidden" id="enrollform-password" name="password"></form>');
+  let $helpform = $('#enroll2fa');
+  $('#enrollform-uid').val($('#username').val());
+  $('#enrollform-password').val($('#password').val());
+  $helpform.submit();
+}
+
+
+/**
+ * Function that will be called from return message if use is not enrolled
+ */
+function expiredPassword() {  //eslint-disable-line
+  $('body').append('<form id="enroll2fa" method="post" action="' +
+    G_SERVER + '/users/api/expired-password"><input type="hidden" id="enrollform-uid" name="uid"><input type="hidden" id="enrollform-password" name="oldpassword"></form>');
   let $helpform = $('#enroll2fa');
   $('#enrollform-uid').val($('#username').val());
   $('#enrollform-password').val($('#password').val());

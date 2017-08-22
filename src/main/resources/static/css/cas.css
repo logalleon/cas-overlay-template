@@ -2501,3 +2501,14 @@ a#email2falink {
     background-color: #006574;
     border-color: #004f5b;
 }
+
+
+.alert-success {
+    color: #19383d;
+    background-color: #fff;
+    border-color: silver;
+}
+
+.has-success .form-control {
+    border-color: silver
+}
