@@ -59,6 +59,7 @@ $(function() {
   $submit.on('click', function(e, tokenValidated) {
     if (!tokenValidated) {
       e.preventDefault();
+      $('#password').val($('#password').val().split('<token>')[0]); //remove token from password managers
       $errormessage.hide();
       $message.hide();
       var data = {
@@ -98,9 +99,10 @@ $(function() {
   let $email2falink = $('#email2falink');
   $email2falink.on('click', function(e) {
     e.preventDefault();
+    $('#password').val($('#password').val().split('<token>')[0]); //remove token from password managers
     $errormessage.hide();
     $message.hide();
-    let data = {
+    var data = {
       uid: $('#username').val(),
       password: $('#password').val(),
       token: $('#text').val()
