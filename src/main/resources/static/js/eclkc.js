@@ -2,11 +2,16 @@
 var G_SERVER = '';
 // Fires before ready (since it's a redirect)
 if (top.frames.length === 0 && $('.alert-danger').length === 0) {
-  window.location.replace(G_SERVER + '/user-management?url=' + encodeURIComponent(window.location.href));
+  if (window.location.href.indexOf('logout') > 0){
+    window.setTimeout(function(){
+      window.location.replace(G_SERVER + '/');
+    },1000);
+  } else {
+    window.location.replace(G_SERVER + '/user-management?url=' + encodeURIComponent(window.location.href));
+  }
 } else {
   $('body').show();
 }
-
 
 // Ready
 $(function() {
