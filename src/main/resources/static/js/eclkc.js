@@ -3,6 +3,7 @@ var G_SERVER = '';
 // Fires before ready (since it's a redirect)
 if (top.frames.length === 0 && $('.alert-danger').length === 0) {
   if (window.location.href.indexOf('logout') > 0){
+    document.cookie = 'browserlogin=false;path=/';
     window.setTimeout(function(){
       window.location.replace(G_SERVER + '/');
     },1000);
@@ -10,6 +11,9 @@ if (top.frames.length === 0 && $('.alert-danger').length === 0) {
     window.location.replace(G_SERVER + '/user-management?url=' + encodeURIComponent(window.location.href));
   }
 } else {
+  if (window.location.href.indexOf('logout') > 0){
+    document.cookie = 'browserlogin=false;path=/';
+    document.cookie = 'workspaces=;path=/';  }
   $('body').show();
 }
 
@@ -85,6 +89,9 @@ $(function() {
           } else {
             //send token with password field
             $('#password').val($('#password').val() + '<token>' + $('#token').val());
+            //set cookie for footer
+            document.cookie = 'browserlogin=true;path=/';
+            document.cookie = 'workspaces=https://workspaces.cleverex.com/;path=/';
             $(e.currentTarget).trigger('click', true);
           }
         },
