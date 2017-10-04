@@ -7,14 +7,19 @@ if (top.frames.length === 0 && $('.alert-danger').length === 0) {
     window.setTimeout(function(){
       window.location.replace(G_SERVER + '/');
     },1000);
+  } else if (isAutoLogin()) {
+    $(function () {
+      autoLogin();
+    });
   } else {
     window.location.replace(G_SERVER + '/user-management?url=' + encodeURIComponent(window.location.href));
   }
 } else {
-  if (window.location.href.indexOf('logout') > 0){
+  if (window.location.href.indexOf('logout') > 0) {
     document.cookie = 'browserlogin=false;path=/';
-    document.cookie = 'workspaces=;path=/';  }
-  $('body').show();
+    document.cookie = 'workspaces=;path=/'; 
+  }
+  $('body').show().css('height', '1px');
 }
 
 // Ready
@@ -145,7 +150,6 @@ $(function() {
     });
 
   });
-
 
 });
 
@@ -308,4 +312,38 @@ function resizeFrame(scrollToTop){
     } catch (e) {
       console.log(e);
     }
+}
+
+/**
+ * [isAutoLogin description]
+ * @return {Boolean} [description]
+ */
+function isAutoLogin () {
+  return window.location.href.indexOf('auto=true') !== -1;
+}
+
+/**
+ * [autoLogin description]
+ * @return {[type]} [description]
+ */
+function autoLogin () {
+  var query = window.location.href.slice(window.location.href.indexOf('?'));
+  query = query.split('&');
+  var username = '';
+  var hash = '';
+  query.map(function (term) {
+    if (term.match(/username/g)) {
+      term = term.replace('username=', '');
+      username = term;
+    } else if (term.match(/hash/g)) {
+      term = term.replace('hash=', '');
+      hash = term;
+    }
+  });
+  $("#fm1 input[name=submit]").removeAttr('disabled');
+  $('#username').val(username);
+  $('#password').val(decodeURIComponent(hash));
+  setTimeout(function () {
+    $('.btn-submit[type="submit"]').trigger('click', true);
+  }, 500);
 }
