@@ -15,9 +15,12 @@ if (top.frames.length === 0 && $('.alert-danger').length === 0) {
     window.location.replace(G_SERVER + '/user-management?url=' + encodeURIComponent(window.location.href));
   }
 } else {
-  if (window.location.href.indexOf('logout') > 0) {
+  if (window.location.href.indexOf('logout') > 0 &&
+    // Fedlet login link contains logoutURL
+    window.location.href.indexOf('logoutURL')) {
     document.cookie = 'browserlogin=false;path=/';
-    document.cookie = 'workspaces=;path=/'; 
+    document.cookie = 'isHSES=false;path=/';
+    document.cookie = 'workspaces=;path=/';
   }
   $('body').show().css('height', '1px');
 }
@@ -93,7 +96,7 @@ $(function() {
             resizeFrame();
           } else {
             //send token with password field
-            $('#password').val($('#password').val() + '<token>' + $('#token').val());
+            //$('#password').val($('#password').val() + '<token>' + $('#token').val());
             //set cookie for footer
             document.cookie = 'browserlogin=true;path=/';
             document.cookie = 'workspaces=https://workspaces.cleverex.com/;path=/';
@@ -340,9 +343,10 @@ function autoLogin () {
       hash = term;
     }
   });
-  $("#fm1 input[name=submit]").removeAttr('disabled');
+  $('#fm1 input[name=submit]').removeAttr('disabled');
   $('#username').val(username);
   $('#password').val(decodeURIComponent(hash));
+  document.cookie = 'isHSES=true;path=/';
   setTimeout(function () {
     $('.btn-submit[type="submit"]').trigger('click', true);
   }, 500);
