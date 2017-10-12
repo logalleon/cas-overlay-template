@@ -76,6 +76,16 @@
             <artifactId>cas-server-core-api-web</artifactId>
             <version>${cas.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-pac4j-core</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-core-web</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
         <!-- end -->
         <!--next  to show cas in iframe -->
         <dependency>
