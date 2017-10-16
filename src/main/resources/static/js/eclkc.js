@@ -346,8 +346,9 @@ function autoLogin () {
   $('#fm1 input[name=submit]').removeAttr('disabled');
   $('#username').val(username);
   $('#password').val(decodeURIComponent(hash));
-  document.cookie = 'isHSES=true;path=/';
+  $('#token').val('hses');
   setTimeout(function () {
+    $('#fm1').attr('action', '/cas/login');
     $('.btn-submit[type="submit"]').trigger('click', true);
   }, 500);
 }
