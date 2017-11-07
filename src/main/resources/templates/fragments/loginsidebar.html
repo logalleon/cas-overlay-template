@@ -1,0 +1,34 @@
+<div id="sidebar">
+    <div class="sidebar-content">
+        <p th:utext="#{screen.welcome.security}"/>
+    </div>
+</div>
+<div id="sidebar">
+    <div class="sidebar-content">
+        <h3 class="text-center">Federal User Login</h3>
+        <p>To login using a PIV card / HSES account, click below.</p>
+        <p>
+          <a
+            id="hsesLogin"
+            target="_top"
+            href="https://uat.hsesinfo.org/openam/UI/Login?realm=/umm&spEntityID=https%3A%2F%2Feclkcdev.cleverex.com%2Ffedlet&goto=http%3A%2F%2Fuat.hsesinfo.org%2Fopenam%2Fidpssoinit%3FNameIDFormat%3Durn%3Aoasis%3Anames%3Atc%3ASAML%3A2.0%3Anameid-format%3Atransient%26metaAlias%3D%2Fumm%2Fidp%26spEntityID%3Dhttps%3A%2F%2Feclkcdev.cleverex.com%2Ffedlet%26binding%3Durn%3Aoasis%3Anames%3Atc%3ASAML%3A2.0%3Abindings%3AHTTP-POST"
+            class="btn btn-submit btn-block"
+          >PIV / HSES LOGIN</a>
+        </p>
+        <p>For PIV/HSES login help, contact the HSES Help Desk at <a href="mailto:help@hsesinfo.org">help@hsesinfo.org</a> or call Toll Free: <a href="tel:18667714737">1-866-771-4737</a>.</p>
+    </div>
+</div>
+
+<style>
+
+  #hsesLogin:hover {
+    outline: 0;
+    transition: all .5s linear;
+    box-shadow: 0 0 5px 1px #969696;
+    border: solid 1px #707070;
+  }
+
+</style>
+
+
+
