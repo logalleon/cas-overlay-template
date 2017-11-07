@@ -2,7 +2,8 @@
 var G_SERVER = '';
 // Fires before ready (since it's a redirect)
 if (top.frames.length === 0 && $('.alert-danger').length === 0) {
-  if (window.location.href.indexOf('logout') > 0){
+  if (window.location.href.indexOf('logout') > 0 &&
+    window.location.href.indexOf('logoutURL') === -1) {
     document.cookie = 'browserlogin=false;path=/';
     window.setTimeout(function(){
       window.location.replace(G_SERVER + '/');
@@ -15,11 +16,9 @@ if (top.frames.length === 0 && $('.alert-danger').length === 0) {
     window.location.replace(G_SERVER + '/user-management?url=' + encodeURIComponent(window.location.href));
   }
 } else {
-  if (window.location.href.indexOf('logout') > 0 &&
-    // Fedlet login link contains logoutURL
-    window.location.href.indexOf('logoutURL')) {
+  if (window.location.href.indexOf('logout') > 0) {
     document.cookie = 'browserlogin=false;path=/';
-    document.cookie = 'isHSES=false;path=/';
+    document.cookie = 'logoutURL=false;path=/';
     document.cookie = 'workspaces=;path=/';
   }
   $('body').show().css('height', '1px');
@@ -313,7 +312,6 @@ function resizeFrame(scrollToTop){
         top.jQuery('html, body').animate({ scrollTop: 0 }, 300);
       }
     } catch (e) {
-      console.log(e);
     }
 }
 
@@ -331,7 +329,7 @@ function isAutoLogin () {
  */
 function autoLogin () {
   var query = window.location.href.slice(window.location.href.indexOf('?'));
-  query = query.split('&');
+  query = query.replace('?', '').split('&');
   var username = '';
   var hash = '';
   query.map(function (term) {
@@ -341,6 +339,8 @@ function autoLogin () {
     } else if (term.match(/hash/g)) {
       term = term.replace('hash=', '');
       hash = term;
+    } else if (term.match(/logoutURL/g)) {
+      document.cookie = decodeURIComponent(term) + ';path=/';
     }
   });
   $('#fm1 input[name=submit]').removeAttr('disabled');
