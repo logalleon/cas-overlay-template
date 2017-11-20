@@ -1,9 +1,10 @@
 /* global $ */
 var G_SERVER = '';
 // Fires before ready (since it's a redirect)
+var href = window.location.href;
 if (top.frames.length === 0 && $('.alert-danger').length === 0) {
-  if (window.location.href.indexOf('logout') > 0 &&
-    window.location.href.indexOf('logoutURL') === -1) {
+  if (href.indexOf('logout') > 0 &&
+    href.indexOf('logoutURL') === -1) {
     document.cookie = 'browserlogin=false;path=/';
     window.setTimeout(function(){
       window.location.replace(G_SERVER + '/');
@@ -13,10 +14,12 @@ if (top.frames.length === 0 && $('.alert-danger').length === 0) {
       autoLogin();
     });
   } else {
-    window.location.replace(G_SERVER + '/user-management?url=' + encodeURIComponent(window.location.href));
+    window.location.replace(G_SERVER + '/user-management?url=' + encodeURIComponent(href));
   }
 } else {
-  if (window.location.href.indexOf('logout') > 0) {
+  // Logout request or login request, unset cookies for the footer
+  if (href.indexOf('logout') > 0 ||
+    href.indexOf('service=') > 0) {
     document.cookie = 'browserlogin=false;path=/';
     document.cookie = 'logoutURL=false;path=/';
     document.cookie = 'workspaces=;path=/';
