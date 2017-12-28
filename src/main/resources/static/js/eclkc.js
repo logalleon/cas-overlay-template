@@ -101,7 +101,7 @@ $(function() {
             //$('#password').val($('#password').val() + '<token>' + $('#token').val());
             //set cookie for footer
             document.cookie = 'browserlogin=true;path=/';
-            document.cookie = 'workspaces=https://workspaces.cleverex.com/;path=/';
+            document.cookie = 'workspaces=https://secure.eclkc.ohs.acf.hhs.gov/collaboration/;path=/';
             $(e.currentTarget).trigger('click', true);
           }
         },
