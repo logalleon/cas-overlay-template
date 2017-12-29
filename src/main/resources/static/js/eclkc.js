@@ -350,6 +350,7 @@ function autoLogin () {
   $('#username').val(username);
   $('#password').val(decodeURIComponent(hash));
   $('#token').val('hses');
+  document.cookie = 'browserlogin=true;path=/';
   document.cookie = 'workspaces=https://secure.eclkc.ohs.acf.hhs.gov/collaboration/;path=/';
   setTimeout(function () {
     $('#fm1').attr('action', '/cas/login');
