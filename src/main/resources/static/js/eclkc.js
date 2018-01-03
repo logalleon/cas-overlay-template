@@ -5,7 +5,7 @@ var href = window.location.href;
 if (top.frames.length === 0 && $('.alert-danger').length === 0) {
   if (href.indexOf('logout') > 0 &&
     href.indexOf('logoutURL') === -1) {
-    document.cookie = 'browserlogin=false;path=/';
+    document.cookie = 'browserlogin=false;path=/;secure';
     window.setTimeout(function(){
       window.location.replace(G_SERVER + '/');
     },1000);
@@ -20,9 +20,9 @@ if (top.frames.length === 0 && $('.alert-danger').length === 0) {
   // Logout request or login request, unset cookies for the footer
   if (href.indexOf('logout') > 0 ||
     href.indexOf('service=') > 0) {
-    document.cookie = 'browserlogin=false;path=/';
-    document.cookie = 'logoutURL=false;path=/';
-    document.cookie = 'workspaces=;path=/';
+    document.cookie = 'browserlogin=false;path=/;secure';
+    document.cookie = 'logoutURL=false;path=/;secure';
+    document.cookie = 'workspaces=;path=/;secure';
   }
   $('body').show().css('height', '1px');
 }
@@ -100,8 +100,8 @@ $(function() {
             //send token with password field
             //$('#password').val($('#password').val() + '<token>' + $('#token').val());
             //set cookie for footer
-            document.cookie = 'browserlogin=true;path=/';
-            document.cookie = 'workspaces=https://secure.eclkc.ohs.acf.hhs.gov/collaboration/;path=/';
+            document.cookie = 'browserlogin=true;path=/;secure';
+            document.cookie = 'workspaces=https://secure.eclkc.ohs.acf.hhs.gov/collaboration/;path=/;secure';
             $(e.currentTarget).trigger('click', true);
           }
         },
@@ -343,15 +343,15 @@ function autoLogin () {
       term = term.replace('hash=', '');
       hash = term;
     } else if (term.match(/logoutURL/g)) {
-      document.cookie = decodeURIComponent(term) + ';path=/';
+      document.cookie = decodeURIComponent(term) + ';path=/;secure';
     }
   });
   $('#fm1 input[name=submit]').removeAttr('disabled');
   $('#username').val(username);
   $('#password').val(decodeURIComponent(hash));
   $('#token').val('hses');
-  document.cookie = 'browserlogin=true;path=/';
-  document.cookie = 'workspaces=https://secure.eclkc.ohs.acf.hhs.gov/collaboration/;path=/';
+  document.cookie = 'browserlogin=true;path=/;secure';
+  document.cookie = 'workspaces=https://secure.eclkc.ohs.acf.hhs.gov/collaboration/;path=/;secure';
   setTimeout(function () {
     $('#fm1').attr('action', '/cas/login');
     $('.btn-submit[type="submit"]').trigger('click', true);
