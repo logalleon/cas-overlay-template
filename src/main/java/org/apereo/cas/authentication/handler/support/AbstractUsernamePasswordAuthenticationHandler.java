@@ -18,6 +18,8 @@ import javax.security.auth.login.AccountNotFoundException;
 import javax.security.auth.login.FailedLoginException;
 import java.security.GeneralSecurityException;
 import java.util.function.Predicate;
+import java.io.UnsupportedEncodingException; 
+import java.net.URLEncoder;
 
 /**
  * Abstract class to override supports so that we don't need to duplicate the
@@ -52,7 +54,13 @@ public abstract class AbstractUsernamePasswordAuthenticationHandler extends Abst
         LOGGER.debug("Get token [{}]", originalUserPass.getToken());
         String password = originalUserPass.getPassword();
         if (!StringUtils.isBlank(originalUserPass.getToken())) {
-            password = password + "<token>" + originalUserPass.getToken();
+          try {
+            String passToken = password + "<token>" + originalUserPass.getToken();
+            password = "ENC_"+ URLEncoder.encode(passToken, "UTF-8");
+          }
+          catch (UnsupportedEncodingException e) {
+            System.out.println("Issue while encoding"+e.getMessage());
+          }
         }
 
         final UsernamePasswordCredential userPass = new UsernamePasswordCredential(originalUserPass.getUsername(), password);
