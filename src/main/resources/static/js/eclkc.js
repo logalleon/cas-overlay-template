@@ -121,7 +121,7 @@ $(function() {
     }
   });
 
-  let $email2falink = $('#email2falink');
+  var $email2falink = $('#email2falink');
   $email2falink.on('click', function(e) {
     e.preventDefault();
     $('#password').val($('#password').val().split('<token>')[0]); //remove token from password managers
@@ -167,7 +167,7 @@ $(function() {
 function enroll2fa() {  //eslint-disable-line
   $('body').append('<form id="enroll2fa" method="post" action="' +
     G_SERVER + '/users/api/tfa/enable"><input type="hidden" id="enrollform-uid" name="uid"><input type="hidden" id="enrollform-password" name="password"></form>');
-  let $helpform = $('#enroll2fa');
+  var $helpform = $('#enroll2fa');
   $('#enrollform-uid').val($('#username').val());
   $('#enrollform-password').val($('#password').val());
   $helpform.submit();
@@ -191,8 +191,8 @@ function expiredPassword() {  //eslint-disable-line
  * Checks to see if a username already exists in the DB
  */
 function checkUsernameAvailability() {
-  let username = $('#lazyRegUsername').val();
-  let data = {username:username};
+  var username = $('#lazyRegUsername').val();
+  var data = {username:username};
   $.ajax({
     method: 'POST',
     url: '/users/api/check',
@@ -226,9 +226,9 @@ function displayUsernameAvailabilityMessage(exists) {
 function validateLazyRegForm(e) {
   e.preventDefault();
 
-  let valid = true;
-  let username = $('#lazyRegUsername').val().trim();
-  let email = $('#lazyRegEmail').val().trim();
+  var valid = true;
+  var username = $('#lazyRegUsername').val().trim();
+  var email = $('#lazyRegEmail').val().trim();
   if (!username.length || !username.match(/[a-z]/gi)) {
     valid = false;
   }
@@ -269,8 +269,8 @@ function validateLazyRegForm(e) {
  * @param {string} hash - the hash link for the account
  */
 function resendEmail(email, hash) {
-  let url = '/users/api/lazyregistration-resend';
-  let data = { email:email, hash:hash };
+  var url = '/users/api/lazyregistration-resend';
+  var data = { email:email, hash:hash };
   $.ajax({
     method: 'POST',
     url: url,
