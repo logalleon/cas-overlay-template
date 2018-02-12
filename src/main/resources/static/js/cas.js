@@ -73,8 +73,14 @@ function animateCasMessageBoxes() {
 function disableEmptyInputFormSubmission() {
 
     $('#fm1 input[name="username"],[name="password"]').on("input", function (event) {
-        var enableSubmission = $('#fm1 input[name="username"]').val().trim() &&
-                               $('#fm1 input[name="password"]').val().trim();
+        var u = String($('#fm1 input[name="username"]').val());
+        var p = String($('#fm1 input[name="password"]').val());
+        var enableSubmission;
+        try {
+            enableSubmission = u.trim().length && p.trim().length;
+        } catch (e) {
+            enableSubmission = u.length && p.length;
+        }
 
         if (enableSubmission) {
             $("#fm1 input[name=submit]").removeAttr('disabled');
