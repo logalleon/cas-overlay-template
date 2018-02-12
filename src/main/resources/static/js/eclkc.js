@@ -41,6 +41,9 @@ $(function() {
   $errormessage.hide();
   $message.hide();
 
+  // Initialize tooltips
+  $('[data-toggle="tooltip"]').tooltip();
+  
   var credentialsWarning = 'Username or password is invalid.';
 
   //check if login or logout
