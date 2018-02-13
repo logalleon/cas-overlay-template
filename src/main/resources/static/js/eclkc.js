@@ -338,17 +338,20 @@ function autoLogin () {
   query = query.replace('?', '').split('&');
   var username = '';
   var hash = '';
-  query.forEach(function (term) {
-    if (term.match(/username/g)) {
-      term = term.replace('username=', '');
-      username = term;
-    } else if (term.match(/hash/g)) {
-      term = term.replace('hash=', '');
-      hash = term;
-    } else if (term.match(/logoutURL/g)) {
-      document.cookie = decodeURIComponent(term) + ';path=/;secure';
+  if (query && query.length) {
+    for (var i = 0; i < query.length; i++) {
+      var term = query[i];
+      if (term.match(/username/g)) {
+        term = term.replace('username=', '');
+        username = term;
+      } else if (term.match(/hash/g)) {
+        term = term.replace('hash=', '');
+        hash = term;
+      } else if (term.match(/logoutURL/g)) {
+        document.cookie = decodeURIComponent(term) + ';path=/;secure';
+      }
     }
-  });
+  }
   $('#fm1 input[name=submit]').removeAttr('disabled');
   $('#username').val(username);
   $('#password').val(decodeURIComponent(hash));
