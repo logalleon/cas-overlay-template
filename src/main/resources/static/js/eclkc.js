@@ -338,7 +338,7 @@ function autoLogin () {
   query = query.replace('?', '').split('&');
   var username = '';
   var hash = '';
-  query.map(function (term) {
+  query.forEach(function (term) {
     if (term.match(/username/g)) {
       term = term.replace('username=', '');
       username = term;
