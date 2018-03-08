@@ -5,6 +5,7 @@ var href = window.location.href;
 if (top.frames.length === 0 && $('.alert-danger').length === 0) {
   if (href.indexOf('logout') > 0 &&
     href.indexOf('logoutURL') === -1) {
+    document.cookie = 'drupaluser=false;path=/;secure';
     document.cookie = 'browserlogin=false;path=/;secure';
     window.setTimeout(function(){
       window.location.replace(G_SERVER + '/');
@@ -20,6 +21,7 @@ if (top.frames.length === 0 && $('.alert-danger').length === 0) {
   // Logout request or login request, unset cookies for the footer
   if (href.indexOf('logout') > 0 ||
     href.indexOf('service=') > 0) {
+    document.cookie = 'drupaluser=false;path=/;secure';
     document.cookie = 'browserlogin=false;path=/;secure';
     document.cookie = 'logoutURL=false;path=/;secure';
     document.cookie = 'workspaces=;path=/;secure';
